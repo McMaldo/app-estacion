@@ -1,0 +1,157 @@
+@extern('header')
+
+<header>
+	<div id="logo">
+		<a href="landing">
+		<img src="img/system/logo2.svg" alt="">
+		</a>
+	</div>
+	<div id="control">
+		<a href="perfil"  class="btn-register">Perfil</a>
+		<a href="logout"  class="btn-register">Cerrar sesión</a>
+	</div>
+</header>
+ 
+<main>
+	<div id="window">
+		<div id="window__listado">
+				<h1>Bienvenido al listado</h1>
+				<!-- BEGIN: Plantilla de fila -->
+				<template id="tpl__fila">
+					<div class="stream__row">
+						<div class="stream__row id">
+							id
+						</div>
+
+						<div class="stream__row">
+							<img src="" alt="" class="avatar" height="100px" width="100px">
+						</div>
+
+						<div class="stream__row first_name">
+							nombre
+						</div>
+
+						<div class="stream__row last_name">
+							apellido
+						</div>
+					</div>
+				</template>
+				<!-- BEGIN: Plantilla de fila -->
+
+				<!-- BEGIN: Plantilla de tarjeta -->
+				<template id="tpl__card">
+					<div class="stream__row__card">
+						
+						<div class="">
+							<img src="" alt="" class="avatar" height="100px" width="100px">
+						</div>
+
+						<div class="stream__row__container">
+ 						<div class="id">
+ 							id
+ 						</div>
+
+ 						<div class="first_name">
+ 							nombre
+ 						</div>
+
+ 						<div class="last_name">
+ 							apellido
+ 						</div>
+						</div>
+					</div>
+				</template>
+				<!-- END: Plantilla de tarjeta -->
+
+				<!-- BEGIN: Contenedor de listado -->
+				<div id="stream__listado">
+				</div>
+				<!-- END: Contenedor de listado -->
+
+				<button id="mover">Mover</button>
+		</div>
+	</div>
+</main>
+<script type="text/javascript">
+ 	/*< variables para la paginación*/
+ 	let cantidad = 10;
+ 	let inicio = 0;
+ 
+ 	/*< carga inicial de elementos en el listado*/
+ 	loadPage();	
+
+ 	/*< si se presiona el botón de avanzar a los siguientes elementos del listado*/
+ 	mover.addEventListener("click", e => {
+ 		inicio = inicio + cantidad;
+ 		loadPage();	
+ 	})
+
+ 	/**
+ 	 * 
+ 	 * @brief carga elementos en el listado
+ 	 * 
+ 	 * */
+ 	function loadPage(){
+ 		// limpia el listado
+	 	stream__listado.innerHTML = "";
+	 	// Llamada a la función asincrona que obtiene un listado de usuarios
+	 	getAllUsers(inicio,cantidad).then( data => {
+
+	 		/*< si hay elementos en el listado*/
+	 		if(data.list.errno!=411){
+
+		 		// Recorre el listado de usuarios fila por fila
+		 		data.list.forEach( row  => {
+		 			
+		 			// Crea e inserta una fila dentro de stream__listado
+		 			addRowStream(row);
+		 		});
+	 		}else{
+	 			stream__listado.innerHTML = data.list.error;
+	 		}
+
+	 	} )
+ 	}
+
+ 	/**
+ 	 * 
+ 	 * @brief Agrega una fila dentro de stream__listado
+ 	 * @param object data fila con datos de usuario
+ 	 * 
+ 	 * */
+ 	function addRowStream(data){
+ 		
+ 		/*< captura el contenido de la template */
+ 		const tpl = tpl__card.content;
+ 		/*< clona la plantilla como un nodo completo*/
+ 		const clon = tpl.cloneNode(true);
+
+ 		/*< alteramos el contenido del clon con los valores de data */
+ 		clon.querySelector(".id").textContent = data.id;
+ 		clon.querySelector(".avatar").src = data.avatar;
+ 		clon.querySelector(".first_name").textContent = data.first_name;
+ 		clon.querySelector(".last_name").textContent = data.last_name;
+
+ 		/*< inserta el clon modificado dentro de stream__listado */
+ 		stream__listado.appendChild(clon);
+ 	}
+
+ 	/**
+ 	 * 
+ 	 * @brief Retorna un listado de usuarios en formato JSON
+ 	 * @param int inicio desde que fila inicia.
+ 	 * @param int cantidad cantidad de filas a listar
+ 	 * @return json listado de usuarios
+ 	 * 
+ 	 * */
+ 	async function getAllUsers(inicio, cantidad){
+ 		/*< consulta a la API */
+ 		const response = await fetch("api/user/getAllUsers/?inicio="+inicio+"&cantidad="+cantidad);
+ 		/*< convierte la respuesta a formato json */
+ 		const data = await response.json();
+
+ 		return data;
+ 	}
+</script>
+
+@extern('footer')
