@@ -90,6 +90,7 @@ main {
 	align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 	#window{
 	  max-width: 700px;
 	  min-height: 400px;
@@ -175,6 +176,12 @@ main {
 	  font-weight: bold;
 		user-select: none;
 		backdrop-filter: blur(10px);
+
+
+		position: sticky;
+		bottom: .5rem;
+		right: .5rem;
+		margin-bottom: 2rem;
 	}
 	#goPanel:hover{
 		background-color: #ffffff0d;
@@ -245,165 +252,57 @@ main.panel{
 	}
 }
 
-main.detalles{
-	position: relative;
-	flex-direction: row;
-	flex-wrap: wrap;
-	#back{
-	  height: 3rem;
-	  width: 3rem;
-	  display: grid;
-	  place-items: center;
-	  position: absolute;
-	  left: 1rem;
-	  top: 1rem;
-	  text-decoration: none;
-	  user-select: none;
-	  color: #ddd;
-	}
-	#back:hover{
-	  background-color: #25274166;
-	}
-	#heading{
-		width: 100%;
-		height: 5rem;
-		padding: 1rem 0 .5rem 5rem;
-		background-color: var(--bg-color);
-		h1{
-			width: 100%;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			overflow: hidden;
-			color: #ccc;
-		}
-		h5{
-			color: #9999a3;
-			i{margin-right: .25em;}
-		}
-	}
-	nav,section{
-		min-height: calc(100vh - 9.5rem);
-	}
-	nav#stats{
-		width: 180px;
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: repeat(5, 1fr);
-		background-color: var(--bg-color);
-		position: relative;
-		span{
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-			user-select: none;
-			cursor: pointer;
-			transition: all .2s;
-	    border-top: 1px solid #00000000;
-	    border-bottom: 1px solid #00000000;
-			h5{
-				color: #636475;
-				font-weight: 100;
-				position: absolute;
-				left: 5px;
-				top: 5px;
-			}
-			.stat{
-				display: flex;
-				.stat-int{
-					font-size: 4rem;
-				}
-				.stat-col{
-					.stat-unit{}
-					.stat-dec{}
-				}
-			}
-		}
-		span:hover{
-			background-color: #25274166;
-	    border-top: 1px solid #333;
-	    border-bottom: 1px solid #333;
-			.stat-int{
-				text-shadow: 0 0 5px #17213d;
-			}
-		}
-		span::after{
-			z-index: 2;
-			content: "";
-			width: 5px;
-			height: 20%;
-			position: absolute;
-			right: 0;
-			top: 40%;
-			border-radius: 5px 0 0 5px;
-			transition: all .2s ease-in;
-		}
-		span:hover::after{
-			background-color: var(--txt-color);
-			height: 30%;
-			top: 35%;
-		}
-		span.active::after{
-			background-color: var(--txt-color);
-			height: 70%;
-			top: 15%;
-		}
-		span.active:hover::after{
-			height: 100%;
-			top: 0;
-			border-radius: 0;
-		}
-	}
-
-	section#graph{
-		width: calc(100% - 180px);
-		padding: 0 1rem 1rem 1rem;
-		h5{
-			width: 100%;
-			height: 1.5rem;
-			display: flex;
-			align-items: center;
-			justify-content: end;
-			padding-right: 1rem;
-		}
-		#values{
-			width: 100%;
-			height: calc(100vh - 12rem);
-			background-color: #29292f59;
-			border: 1px solid #4b3c5f57;
-			backdrop-filter: blur(1px);
-			border-radius: 6px;
-		}
-	}
-}
-
-@media (max-width: 575px){
-	main.detalles{
-		nav#stats{
-			width: 120px;
-		}
-		section#graph{
-			width: calc(100% - 120px);
-		}
-	}
-}
-
 footer{
-  background-color: var(--bg-color-footer);
-  color: white;
-  #footer__content {
-	  display: flex;
-	  height: 10rem;
-	  padding: .5rem 2rem;
-	  #footer__extra {
-		  width: 50%;
-		  display: flex;
-		  align-items: center;
+	width: 100%;
+	min-height: 5rem;
+	display: grid;
+	grid-template-areas:
+  'h3 h3 h3'
+  'git ext ext';
+	grid-gap: 1rem;
+	background-color: var(--bg-color-footer);
+	padding: 1rem 2rem 2rem 2rem;
+	h3{
+		color: #bbb;
+		grid-area: h3;
+	}
+	#footer__git {
+		grid-area: git;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		gap: .5rem;
+		a{
+			width: fit-content;
+			display: flex;
+			align-items: center;
+			text-decoration: none;
+			color: #999;
+			i{
+				font-size: 25px;
+				margin-right: .5rem;
+			}
 		}
-		#footer__author {
-		  display: flex;
-		  align-items: center;
+		a:hover{
+			color: #bbb;
+			.fa-github{color: #ddd;}
+			.fa-gitlab{color: #fc6d26;}
+		}
+	}
+	#footer__extra {
+		grid-area: ext;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		color: #a0b3a5;
+		gap: .5rem;
+		a{
+			color: #c4eed0;
+			font-size: 14pt;
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: underline;
 		}
 	}
 }

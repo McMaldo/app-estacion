@@ -20,7 +20,7 @@
 		<h5>Ubicacion</h5>
 	</div>
 	<nav id="stats">
-		<span id="temp" class="active">
+		<span id="btn-temperatura" class="active">
 			<h5>Temperatura</h5>
 			<div class="stat">
 				<div class="stat-int">00</div>
@@ -30,8 +30,8 @@
 				</div>
 			</div>
 		</span>
-		<span id="ince">
-			<h5>Probabilidad de Incendios</h5>
+		<span id="btn-fuego">
+			<h5>Riesgo de Incendios</h5>
 			<div class="stat">
 				<div class="stat-int">00</div>
 				<div class="stat-col">
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 		</span>
-		<span id="hume">
+		<span id="btn-humedad">
 			<h5>Humedad</h5>
 			<div class="stat">
 				<div class="stat-int">00</div>
@@ -50,17 +50,7 @@
 				</div>
 			</div>
 		</span>
-		<span id="pres">
-			<h5>Presión Atmosferica</h5>
-			<div class="stat">
-				<div class="stat-int">00</div>
-				<div class="stat-col">
-					<div class="stat-unit">hPa</div>
-					<div class="stat-dec">.00</div>
-				</div>
-			</div>
-		</span>
-		<span id="vien">
+		<span id="btn-viento">
 			<h5>Vientos</h5>
 			<div class="stat">
 				<div class="stat-int">00</div>
@@ -70,54 +60,218 @@
 				</div>
 			</div>
 		</span>
+		<span id="btn-presion">
+			<h5>Presión Atmosferica</h5>
+			<div class="stat">
+				<div class="stat-int">00</div>
+				<div class="stat-col">
+					<div class="stat-unit">hPa</div>
+					<div class="stat-dec">.00</div>
+				</div>
+			</div>
+		</span>
 	</nav>
 	<section id="graph">
 		<h5></h5>
-		<div id="values"></div>
+		<div id="values">
+			<div id="title-sub"></div>
+			<div id="panel-container">
+ 				<!-- Inicia Sección de datos de temperatura -->
+ 				<div id="panel-container-temperatura" style="display: none;">
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="item">
+ 								<div class="item-title">
+ 									<i class="fas fa-thermometer-full color-temperatura" aria-hidden="true"></i>&nbsp;TEMPERATURA
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="col-items">
+ 							<div class="col-important">
+	 							<div class="important-val-int" id="temp-val-int">25</div>
+								<div class="important-detail">
+									<div class="important-val-unit">ºC</div>
+	 								<div class="important-val-dec" id="temp-val-dec">.70</div>
+	 							</div> 							
+	 						</div>
+		 					<div class="panel-row">
+	 							<div class="item">
+	 								<div class="item-title">
+	 									<i class="fas fa-caret-up color-rojo" aria-hidden="true"></i>&nbsp;Máxima
+	 								</div>
+	 								<div class="item-value" id="temp-max">30.20ºC</div>
+	 							</div>
+	 							<div class="item">
+	 								<div class="item-title">
+	 									<i class="fas fa-caret-down color-verde" aria-hidden="true"></i>&nbsp;Mínima
+	 								</div>
+	 								<div class="item-value" id="temp-min">19.40ºC</div>
+	 							</div>
+	 						</div>
+ 						</div>
+ 					</div>
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="item">
+ 								<div class="item-title">
+ 									<i class="fas fa-child color-humedad" aria-hidden="true"></i> SENSACIÓN
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="col-items">
+ 							<div class="col-important">
+	 							<div class="important-val-int" id="sens-val-int">0</div>
+								<div class="important-detail">
+									<div class="important-val-unit">ºC</div>
+	 								<div class="important-val-dec" id="sens-val-dec">.00</div>
+	 							</div> 							
+	 						</div>
+	 						<div class="panel-row">
+		 						<div class="item">
+	 								<div class="item-title">
+	 									<i class="fas fa-caret-up color-rojo" aria-hidden="true"></i>&nbsp;Máxima
+	 								</div>
+	 								<div class="item-value" id="sen-max">0.00ºC</div>
+	 							</div>
+	 							<div class="item">
+	 								<div class="item-title">
+	 									<i class="fas fa-caret-down color-verde" aria-hidden="true"></i>&nbsp;Mínima
+	 								</div>
+	 								<div class="item-value" id="sen-min">0.00ºC</div>
+	 							</div>
+	 						</div>
+	 					</div>
+ 					</div>
+				</div>
+				<!-- Fin Sección de datos de temperatura -->
+
+				<!-- Inicia Sección de datos de fuego -->
+				<div id="panel-container-fuego" style="display: none;">
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="item">
+ 								<div class="item-title">FFMC</div>
+ 								<div class="item-value" id="ffmc">0.0000</div>
+ 							</div>
+
+ 							<div class="item">
+ 								<div class="item-title">DMC</div>
+ 								<div class="item-value" id="dmc">0.0000</div>
+ 							</div>
+
+ 							<div class="item">
+ 								<div class="item-title">DC</div>
+ 								<div class="item-value" id="dc">0.0000</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="item">
+ 								<div class="item-title">ISI</div>
+ 								<div class="item-value" id="isi">0.0000</div>
+ 							</div>
+ 							<div class="item">
+ 								<div class="item-title">BUI</div>
+ 								<div class="item-value" id="bui">0.0000</div>
+ 							</div>
+
+ 							<div class="item">
+ 								<div class="item-title">FWI</div>
+ 								<div class="item-value" id="fwi">0.0000</div>
+ 							</div>
+ 						</div>
+ 					</div>
+ 				</div>
+ 				<!-- Fin Sección de datos de fuego -->
+
+				<!-- Inicia Sección de datos de humedad -->
+ 				<div id="panel-container-humedad" style="display: grid;">
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="col-important">
+	 							<div class="important-val-int" id="humedad__val__int">59</div>
+								<div class="important-detail">
+									<div class="important-val-unit">%</div>
+	 								<div class="important-val-dec" id="humedad__val__dec">.00</div>
+	 							</div> 							
+	 						</div>
+ 						</div>
+ 					</div>					
+ 				</div>
+ 				<!-- Fin Sección de datos de humedad -->
+
+				<!-- Inicia Sección de datos de viento -->
+ 				<div id="panel-container-viento" style="display: none;">
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="item">
+ 								<div class="item-title">
+ 									<i class="fas fa-wind color-viento" aria-hidden="true"></i>&nbsp;VIENTO
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="col-items">
+ 							<div class="col-important">
+	 							<div class="important-val-int" id="viento__val__int">0</div>
+								<div class="important-detail">
+									<div class="important-val-unit">Km/H</div>
+	 								<div class="important-val-dec" id="viento__val__dec">.00</div>
+	 							</div> 							
+	 						</div>
+		 					<div class="panel-row">
+	 							<div class="item">
+	 								<div class="item-title">
+	 									<i class="fas fa-caret-up color-rojo" aria-hidden="true"></i>&nbsp;Máximo
+	 								</div>
+	 								<div class="item-value" id="viento__max">0Km/H</div>
+	 							</div>
+							</div>
+ 						</div>
+ 					</div>
+ 					<div class="panel-col">
+						<div class="panel-row">
+							<div style="display: flex; align-items: center; gap:5px; font-size: 18px;">
+								<i class="far fa-compass color-rojo" aria-hidden="true"></i>	
+								<div class="" id="viento__val__veleta">Indeterminado</div>
+							</div>
+						</div>
+ 					</div>
+ 				</div>
+ 				<!-- Fin Sección de datos de viento -->
+
+ 				<!-- Inicia Sección de datos de presion -->
+ 				<div id="panel-container-presion" style="display: none;">
+ 					<div class="panel-col">
+ 						<div class="col-items">
+ 							<div class="col-important">
+	 							<div class="important-val-int" id="presion__val__int">0</div>
+								<div class="important-detail">
+									<div class="important-val-unit">hPa</div>
+	 								<div class="important-val-dec" id="presion__val__dec">.00</div>
+	 							</div> 							
+	 						</div>
+ 						</div>
+ 					</div>				
+ 				</div>
+ 				<!-- Fin Sección de datos de presion -->
+ 			</div>
+			<div id="panel-canvas">
+ 				<div id="contenedor-grafico" class="chart-container" style="position: relative; height: 100%; width: 100%; padding: 0.5em;">
+ 					<div class="chartjs-size-monitor">
+ 						<div class="chartjs-size-monitor-expand">
+ 							<div class=""></div>
+ 						</div>
+ 						<div class="chartjs-size-monitor-shrink">
+ 							<div class=""></div>
+ 						</div>
+ 					</div>	
+					<canvas id="myChart" class="border-debug chartjs-render-monitor" style="width: 296px; height: 355px; background-color: rgba(0, 0, 0, 0); display: block;" width="296" height="355"></canvas>
+				</div>
+ 			</div>
+		</div>
 	</section>
 </main>
 
-<script type="text/javascript">
-let chipid = "";
-let setActive = (idSelected) => {
-	document.querySelectorAll("#stats span").forEach(e => {
-		e.id == idSelected ? e.classList.add("active") : e.classList.remove("active")
-	})
-}
-async function addVisitStation(){
-	const response = await fetch("https://mattprofe.com.ar/proyectos/app-estacion/datos.php?chipid="+chipid+"&mode=visit-station")
-	const data = await response.json()
-	return data
-}
-async function getStationData(){
-	const response = await fetch("https://mattprofe.com.ar/proyectos/app-estacion/datos.php?chipid="+chipid+"&cant=1")
-	const data = await response.json()
-
-	// Agregar nombre y ubicacion de la estacion al doc
-	document.querySelector("#heading h1").innerHTML = data[0].estacion
-	document.querySelector("#heading h5").innerHTML = '<i class="fas fa-map-marker-alt color-ubicacion"></i>'+data[0].ubicacion
-	document.querySelector("#graph h5").innerHTML = data[0].fecha
-
-	return data
-}
-
-// main
-document.addEventListener("DOMContentLoaded", function(event){
-
-	// buscamos el chipid
-	chipid = window.location.href.split("?chipid=")[1];
-	console.log("Web Cargada para el chipid: " + chipid);
-
-	// Incrementa las visitas de esta estacion
-	addVisitStation();
-
-	getStationData();
-})
-
-// set nav button ::after
-document.querySelectorAll("#stats span").forEach(e => {
-	e.addEventListener("click", () => setActive(e.id))
-})
-</script>
-
+<script type="text/javascript" src="views/static/js/detalle.js{{PROJECT_MODE}}"></script>
 @extern('footer')

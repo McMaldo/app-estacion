@@ -1,0 +1,392 @@
+#panel-container-fuego{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	height: calc(50% - 4em);
+	color: white;
+}
+
+#panel-container-temperatura{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	height: calc(50% - 5em);
+	color: white;
+}
+
+#panel-container-viento{
+	display: grid;
+	grid-template-columns: 50% 50%;
+	color: white;
+}
+
+#panel-container-presion{
+	color: white;
+}
+
+#panel-container-humedad{
+	color: white;
+}
+
+#panel-canvas{
+
+	/*border:solid;*/
+	height: 50%;
+	display: flex;
+	justify-content: center;
+}
+
+.panel-col{
+	/*border: solid 1px red;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.col-items{
+	width: 100%;
+}
+
+.panel-row{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.btn-control {
+	border-radius: 10px 10px 0 0;
+	border: solid 0px #131313;
+	overflow: hidden;
+	background-color: rgb(61, 61, 61);
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.5s;
+	outline: none;
+	box-shadow: 4px 4px 4px 0px black;
+}
+
+.btn-control:hover, .btn-control:active, .btn-control:focus {
+	background-color: rgba( 0, 0, 0, 1);
+	border: solid 0px gray;
+	box-shadow: 4px 4px 4px -3px black;
+}
+
+
+.btn-control-title{
+	/*background-color: red;*/
+	color: white;
+	text-align: center;
+	height: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.btn-control-container{
+	display: grid;
+	grid-template-columns: 50px auto;
+	color: white;
+	/*flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;*/
+}
+
+.control-title{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 40px;
+	/*border: solid;*/
+}
+
+
+.control-date{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	/*border:solid;*/
+}
+
+
+.col-important{
+	display: flex;
+	justify-content: center;
+}
+
+.important-val-int{
+	font-size: 4rem;
+}
+
+.important-val-unit {
+	font-size: 2rem;
+}
+
+.important-val-dec {
+	font-size: 2rem;
+}
+
+#title-sub {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#col-sub {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: 12px;
+}
+
+.item-title{
+	font-size: 12px;
+	text-align: center;
+}
+
+.item-value{
+	text-align: center;
+}
+
+.color-fuego{
+	color: #ec512b;
+}
+
+.color-temperatura{
+	color: #ffbf69;
+}
+
+.color-humedad{
+	color: #00bbf9;
+}
+
+.color-viento{
+	color: #e0fbfc;
+}
+
+.color-presion{
+	color: #6ee55d;
+}
+
+.color-rojo{
+	color: red;
+}
+.color-verde{
+	color: green;
+}
+
+.visible{
+	display: none !important;
+}
+
+
+main.detalles{
+	position: relative;
+	flex-direction: row;
+	align-items: unset;
+	flex-wrap: wrap;
+	#back{
+	  height: 3rem;
+	  width: 3rem;
+	  display: grid;
+	  place-items: center;
+	  position: absolute;
+	  left: 1rem;
+	  top: 1rem;
+	  text-decoration: none;
+	  user-select: none;
+	  color: #ddd;
+	}
+	#back:hover{
+	  background-color: #25274166;
+	}
+	#heading{
+		width: 100%;
+		height: 5rem;
+		padding: 1rem 0 .5rem 5rem;
+		background-color: var(--bg-color);
+		h1{
+			width: 100%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			color: #ccc;
+		}
+		h5{
+			color: #9999a3;
+			i{margin-right: .25em;}
+		}
+	}
+	nav,section{
+		min-height: calc(100vh - 9.5rem);
+	}
+	nav#stats{
+		width: 180px;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(5, 1fr);
+		background-color: var(--bg-color);
+		position: relative;
+		span{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			user-select: none;
+			cursor: pointer;
+			transition: all .2s;
+	    border-top: 1px solid #00000000;
+	    border-bottom: 1px solid #00000000;
+			h5{
+				color: #636475;
+				font-weight: 100;
+				position: absolute;
+				left: 5px;
+				top: 5px;
+			}
+			.stat{
+				display: flex;
+				.stat-int{
+					font-size: 4rem;
+				}
+				.stat-col{
+					.stat-unit{}
+					.stat-dec{}
+				}
+			}
+		}
+		span:hover{
+			background-color: #25274166;
+	    border-top: 1px solid #333;
+	    border-bottom: 1px solid #333;
+			.stat-int{
+				text-shadow: 0 0 5px #17213d;
+			}
+		}
+		span::after{
+			z-index: 2;
+			content: "";
+			width: 5px;
+			height: 20%;
+			position: absolute;
+			right: 0;
+			top: 40%;
+			border-radius: 5px 0 0 5px;
+			transition: all .2s ease-in;
+		}
+		span:hover::after{
+			background-color: var(--txt-color);
+			height: 30%;
+			top: 35%;
+		}
+		span.active::after{
+			background-color: var(--txt-color);
+			height: 70%;
+			top: 15%;
+		}
+		span.active:hover::after{
+			height: 100%;
+			top: 0;
+			border-radius: 0;
+		}
+	}
+
+	section#graph{
+		width: calc(100% - 180px);
+		padding: 0 1rem 1rem 1rem;
+		h5{
+			width: 100%;
+			height: 1.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: end;
+			padding-right: 1rem;
+		}
+		#values{
+			width: 100%;
+			min-height: calc(100vh - 12rem);
+			background-color: #29292f59;
+			border: 1px solid #4b3c5f57;
+			backdrop-filter: blur(1px);
+			border-radius: 6px;
+			padding: .5rem;
+		}
+	}
+}
+
+@media (max-width: 650px){
+	main.detalles{
+		flex-direction: column;
+		nav#stats{
+			width: 100%;
+			height: 8rem;
+			min-height: 8rem;
+			grid-template-columns: repeat(5, minmax(9rem, 1fr));
+			grid-template-rows: repeat(1, 1fr);
+			overflow-x: scroll;
+		  scrollbar-color: #9999a3 transparent;
+		  scrollbar-width: thin;
+			span{
+			    border: 1px solid #00000000;
+			    border-bottom: none;
+			    padding-top: 1.5rem;
+			}
+			span:hover{
+			    border: 1px solid #333;
+			    border-bottom: none;
+			}
+			span::after{
+				bottom: 0;
+				width: 20%;
+				left: 40%;
+				height: 5px;
+				right: unset;
+				top: unset;
+				border-radius: 5px 5px 0 0;
+			}
+			span:hover::after{
+				background-color: var(--txt-color);
+				width: 30%;
+				left: 35%;
+				
+				height: 5px;
+				top: unset;
+			}
+			span.active::after{
+				background-color: var(--txt-color);
+				width: 70%;
+				left: 15%;
+				
+				height: 5px;
+				top: unset;
+			}
+			span.active:hover::after{
+				/*width: 100%;
+				left: 0;*/
+
+				border-radius: 5px 5px 0 0;
+				height: 5px;
+				top: unset;
+			}
+		}
+		section#graph{
+			width: 100%;
+			height: calc(100% - 8rem);
+			min-height: calc(100% - 8rem);
+			display: flex;
+			flex-direction: column;
+			#values{
+				width: 100%;
+				min-height: calc(100vh - 20rem);
+			}
+		}
+	}
+}
